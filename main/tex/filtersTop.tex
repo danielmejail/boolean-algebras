@@ -1,0 +1,341 @@
+\theoremstyle{plain}
+\newtheorem{thmBoolPowsetIso}{Proposition}[section]
+\newtheorem{lemmaFilterConverges}[thmBoolPowsetIso]{Lemma}
+\newtheorem{coroTopoConseq}[thmBoolPowsetIso]{Corollary}
+\newtheorem{lemmaCharAlg}[thmBoolPowsetIso]{Lemma}
+\newtheorem{thmStoneSpaceOfBoolIsStoneSpace}[thmBoolPowsetIso]{Theorem}
+\newtheorem{thmStoneSpaceIsStoneSpaceOfBool}[thmBoolPowsetIso]{Theorem}
+
+\theoremstyle{remark}
+
+%------------------
+
+
+We begin this section defining the neighbourhood filter.
+
+Let $X$ be a topologial space nad let $x\in X$ be any point. The
+\emph{neighbourhood filter} at $x$ \emph{on} $X$ is the filter
+$N_{x}$ in $\powset{X}$ (partially ordered by inclusion) consisting of
+precisely the open subsets of $X$ containing $x$.
+
+\begin{lemmaFilterConverges}\label{thm:filterconverges}
+	Given a point $x$ in a topological space $X$, the following conditions
+	on a filter $F$ on $X$ are equivalent:
+	\begin{itemize}
+		\item[i]
+			\begin{math}
+				x\in\bigcup\left\lbrace\clos{A}
+				\,:\,A\in F\right\rbrace
+			\end{math};
+		\item[ii] if $A\in F$ and $U\in N_{x}$, then
+			$A\cap U\not=\varnothing$; and
+		\item[iii] the union $F\cup N_{x}$ is contained in a (proper)
+			filter in $\powset{X}$.
+	\end{itemize}
+	%
+\end{lemmaFilterConverges}
+
+\begin{proof}
+	The first two are equivalent by definition of closure of a set.
+	\textit{(ii)} is equivalent to $F\cup N_{x}$ having the finite
+	intersection property, which, by \ref{thm:filtergeneratedbysubset},
+	is equivalent to \textit{(iii)}.
+\end{proof}
+
+If any of the equivalent conditions in lemma \ref{thm:filterconverges}
+is satisfied, we say that $x$ is an \emph{adherent point} of the filter
+$F$. If, moreover, $F\supset N_{x}$, then $F$ is said to \emph{converge}
+to $x$.
+
+If $F$ converges to a point $x\in X$, then $x$ is an adherent
+point of $F$. If $F$ is an ultrafilter and $x$ is an adherent point of
+$F$, then $N_{x}$ must be contained in $F$, which implies that $F$
+converges to $x$. In other words, an ultrafilter converges to a point, if
+and only if this point is an adherent point of the ultrafilter.
+
+\begin{coroTopoConseq}\label{thm:topoconseq}
+	Let $X$ be a topological space. Then
+	\begin{itemize}
+		\item[(a)] $X$ is Hausdorff, if and only
+			if every filter converges to at most one point.
+			Equivalently, $X$ is Hausdorff, if and only if every
+			ultrafilter has at most one adherent point
+			(converges to at most one point);
+		\item[(b)] $X$ is compact, if and only if each filter has,
+			at least, one adherent point. Equivalently, $X$
+			is compact, if and only if every ultrafilter has
+			at least one adherent point (converges to at least
+			one point).
+	\end{itemize}
+	%
+\end{coroTopoConseq}
+
+\subsection{Stone Spaces}
+Given a countable set $X$, the Boolean subalgebra $\mathsf{Z}(X)$ of finite
+and cofinite subsets of $X$ (of the power set Boolean algebra $\powset{X}$
+partially ordered by inclusion) is \emph{not} isomorphic to any power set
+Boolean algebra, since it is countable.
+
+We see from \ref{thm:topoconseq} that, given a compact Hausdorff topological
+space $X$, there is an associated map:
+\begin{center}
+	\begin{tikzcd}
+		\begin{Bmatrix}
+			\text{ultrafilters} \\
+			\text{on $X$}
+		\end{Bmatrix}
+		\arrow[r] &
+		\begin{Bmatrix}
+			\text{points} \\
+			\text{in $X$}
+		\end{Bmatrix}
+	\end{tikzcd}
+\end{center}
+So we may wonder what kind of structure does the set of ultrafilters on $X$
+possess. In oreder to understand this, we consider the case of an arbitrary
+Boolean algebra.
+
+Let $B$ be a Boolean algebra and let $\ufilters{B}$ denote the set of
+ultrafilters in $B$. Consider the following map $u$ which to each element
+$x\in B$ asigns the subset of $\ufilters{B}$ of ultrafilters containing $x$,
+that is,
+\begin{equation}
+	\label{eq:boolpowsetiso}
+	\begin{aligned}
+		u(x) & \,=\,\left\lbrace\phi\in\ufilters{B}
+			\,:\,x\in\phi\right\rbrace
+		\text{ .}
+	\end{aligned}
+\end{equation}
+%
+Given $x\,y\in B$, if $x\not = y$, then, by \ref{thm:filterseparation},
+there exists an ultrafilter $\phi$ containing one but not the other. In
+particular, the map $u:\,B\rightarrow\powset{\ufilters{B}}$ is injective.
+
+\begin{thmBoolPowsetIso}\label{thm:boolpowsetiso}
+	Let $B$ be a Boolean algebra, $\ufilters{B}$ be the set of filters
+	in $B$ and let $\powset{\ufilters{B}}$ be the power set Boolean
+	algebra of subsets of $\ufilters{B}$ ordered by inclusion. Let
+	$u:\,B\rightarrow\powset{\ufilters{B}}$ be the map defined by
+	\eqref{eq:boolpowsetiso}. Then $u$ is an injective Boolean algebra
+	homomorphism. In particular, $B$ is isomorphic to a subalgebra of
+	$\powset{\ufilters{B}}$.
+\end{thmBoolPowsetIso}
+
+\begin{proof}
+	If $F$ is any filter and $x,y\in B$, then $x,y\in F$, if and only
+	if $x\boolprod y\in F$. This shows that
+	\begin{align*}
+		u(x\boolprod y) & \,=\,u(x)\cap u(y)
+		\text{ ,}
+	\end{align*}
+	%
+	which is equal to the meet of the elements $u(x)$ and $u(y)$
+	in $\powset{\ufilters{B}}$. So, $u$ respects meets. By one of
+	the equivalent conditions of being an ultrafilter, if
+	$\phi\in\ufilters{B}$, for every $x\in B$, $x\in\phi$ xor
+	$\conj{x}\in\phi$. Thus,
+	\begin{align*}
+		u(\conj{x}) & \,=\,\ufilters{B}\setmin u(x)
+			\,=\,\setcomp{u(x)}
+		\text{ ,}
+	\end{align*}
+	%
+	which is the complement of $u(x)$ in $\powset{\ufilters{B}}$.
+	Since no proper filter contains the least element $0$ in $B$,
+	$u(0)$ equals the empty subset and, since every filter contains the
+	greatest element $1$, $u(1)$ equals $\ufilters{B}$. But these are
+	precisely the least and greatest elements in the lattice
+	$\powset{\ufilters{B}}$. Then $u$ respects $\boolsum$, as
+	well, and is, therefore, a Boolean algebra homomorphism.
+\end{proof}
+
+A \emph{Stone space} is a topological space $X$ which is compact, Hausdorff
+and totally disconected (equivalently, admits a basis of closed and open
+subsets). Given an arbitrary topological space $X$, the collection of all
+subsets of $X$ which are both closed and open forms a Boolean algebra, a
+subalgebra of the Boolean algebra $\powset{X}$ of subsets of $X$. We shall
+call this algebra, the \emph{characteristic algebra} of $X$ and denote it
+by $\charalg{X}$.
+
+In a set $X$, if $\cal{A}$ is a subalgebra of $\powset{X}$, then $\cal{A}$
+constitutes a base for a topology on $X$. With this topology, the elements of
+$\cal{A}$ are both open and closed subsets of $X$. In particular, if $X$ is a
+Stone space, then $\charalg{X}$ forms a basis for the topology on $X$. The
+following lemma says that the characteristic algebra of a Stone space is
+the only Boolean subalgebra of subsets of $X$ with this property.
+
+\begin{lemmaCharAlg}\label{thm:charalg}
+	Let $X$ be a Stone space and let $\cal{A}$ be a subalgebra of the
+	Boolean algebra $\powset{X}$. If $\cal{A}$ is a basis for the topology
+	on $X$, then $\cal{A}=\charalg{X}$.
+\end{lemmaCharAlg}
+
+\begin{proof}
+	The elements of $\cal{A}$ are both open and closed, since
+	$\cal{A}$ is, by hypothesis, a part of the topology on $X$ and
+	$\cal{A}$ is, being a subalgebra, closed under complementation.
+	Thus, $\cal{A}\subset\charalg{X}$.
+
+	Now let $V\in\charalg{X}$. On the one hand, since $V$ is open and
+	$\cal{A}$ is a base for the topology on $X$, given $x\in V$, there
+	exists $U_{x}\in\cal{A}$ such that $x\in U_{x}\subset V$. On the
+	other hand, since $V$ is closed and $X$ is compact, $V$ is,
+	therefore compact. Combining these two observations, we conclude
+	that $V$ is covered by finitely many $U_{x}$, so
+	\begin{align*}
+		V & \,=\, U_{x_{1}}\cup\,\cdots\,\cup U_{x_{k}}
+		\text{ .}
+	\end{align*}
+	%
+	This shows that $V$ belongs to $\cal{A}$.
+\end{proof}
+
+Given a Boolean algebra $B$, we have seen that the homomorphism
+$u:\,B\rightarrow\powset{\ufilters{B}}$ determines an isomorphism between
+$B$ and the subalgebra $u(B)$ of $\powset{\ufilters{B}}$. Now, the subalgebra
+$u(B)$ determines a topology on $\ufilters{B}$. The topological space
+consisting of the set $\ufilters{B}$ together with the topology determined
+by the Boolean algebra $B\simeq u(B)\subset\powset{\ufilters{B}}$ is called
+the \emph{Stone space of the Boolean algebra $B$}. The following theorem
+shows, in particular, that the Stone space of a Boolean algebra is a Stone
+space, a compact, Hausdorff and totally disconnected topological space.
+
+\begin{thmStoneSpaceOfBoolIsStoneSpace}\label{thm:stoneofboolisstone}
+	The Stone space $\ufilters{B}$ of a Boolean algebra $B$ is a
+	Stone space and the map $u:\,B\rightarrow\powset{\ufilters{B}}$
+	is an isomorphism from $B$ onto the characteristic algebra
+	$\charalg{\ufilters{B}}$ of $\ufilters{B}$.
+\end{thmStoneSpaceOfBoolIsStoneSpace}
+
+\begin{proof}
+	We show firstly that $\ufilters{B}$ is Hausdorff when given the
+	topology determined by $u(B)$. Let $\phi,\psi\in\ufilters{B}$
+	be two ultrafilters in $B$ and suppose $\phi\not=\psi$. This
+	means $\phi$ and $\psi$ are different as subsets of $B$, so
+	there exists $x\in\phi$ such that $x\not\in\psi$ (note that, by
+	maximality, both $\psi\setmin\phi$ and $\phi\setmin\psi$ are
+	nonempty). In particular, $\phi\in u(x)$ and $\psi\not\in u(x)$.
+	By maximality of $\psi$, it follows that $\psi\in u(\conj{x})$.
+	Since $u(x)$ and $u(\conj{x})$ are disjoint open subsets, we
+	conclude that $\ufilters{B}$ is Hausdorff. Note that we have also
+	shown that the space of ultrafilters is totally disconnected.
+
+	To show that $\ufilters{B}$ is compact, consider an open cover
+	$\{u(x_{i})\,:\,i\in I\}$ by elements of the base $u(B)$.
+	Assume this cover does not admit a finite subcover.
+	This is equivalent to assuming the collection of complements
+	$\{u(\conj{x_{i}})\,:\,i\in I\}$ has the finite intersection
+	property. But then the subset $\{\conj{x_{i}}\,:\,i\in I\}$ has
+	the finite intersection property. By
+	\ref{thm:filtergeneratedbysubset}, there exists an ultrafilter
+	$\phi$ such $\conj{x_{i}}\in\phi$ for every $i\in I$. This implies
+	\begin{align*}
+		\phi & \,\in\,\bigcap_{i\in I}\,u(\conj{x_{i}})
+		\text{ .}
+	\end{align*}
+	%
+	Equivalently, $x_{i}\not\in\phi$ for every $i\in I$ and
+	\begin{align*}
+		\phi & \,\not\in\,\bigcup_{i\in I}\,u(x_{i})
+		\text{ ,}
+	\end{align*}
+	%
+	contradicting the assumption that $\{u(x_{i})\,:\,i\in I\}$ was
+	a cover of $\ufilters{B}$.
+
+	The last assertion follows from \ref{thm:charalg}, since $u(B)$ has
+	just been shown to be a base for the topology of the Stone space
+	$\ufilters{B}$.
+\end{proof}
+
+The preivious theorem also showed that every Boolean algebra is the
+characteristic algebra of a Stone space, especifically, of its Stone
+space. In the opposite direction, every Stone space is homeomorphic to the
+Stone space of its characteristic algebra (every characteristic algebra is
+the characteristic algebra of the Stone space of a Boolean algebra\dots).
+
+\begin{thmStoneSpaceIsStoneSpaceOfBool}\label{thm:stoneisstoneofbool}
+	Let $X$ be a Stone space. Then $X$ is homeomorphic to the
+	Stone space $\ufilters{\charalg{X}}$ of its characteristic algebra.
+\end{thmStoneSpaceIsStoneSpaceOfBool}
+
+\begin{proof}
+	Let $X$ be a Stone space. Assume $X$ is not the one-point space
+	$\theone$; the proof is trivial, otherwise. So, assume that
+	$X\not=\theone$ and define a map from $X$ to the Stone space of
+	its characteristic algebra $v:\,X\rightarrow\ufilters{\charalg{X}}$
+	by
+	\begin{align*}
+		v(\xi) & \,=\, \left\lbrace U\in\charalg{X}
+			\,:\, \xi\in U\right\rbrace
+		\text{ .}
+	\end{align*}
+	%
+	For each fixed point $\xi$ of $X$, the collection $v(\xi)$
+	constitutes a filter in $\charalg{X}$. Since $X$ has more than
+	one point and is a Hausdorff space, $v(\xi)$ must be a proper
+	subset of $\charalg{X}$. For each open and closed subsets
+	$U\in\charalg{X}$ and $\xi\in X$, either $\xi\in U$ or
+	$\xi\not\in U$. Equivalently, either $\xi\in U$ or
+	$\xi\in X\setmin U=\setcomp{U}$. Thus, for each fixed $x\in X$,
+	$v(x)$ is an ultrafilter. Thus $v$ determines a well-defined map
+	\begin{align*}
+		v & \,:\, X\,\rightarrow\,\ufilters{\charalg{X}}
+		\text{ .}
+	\end{align*}
+	%
+
+	If $\xi,\upsilon\in X$ are distinct elements of $X$, then there
+	exist $U,V\in\charalg{X}$ such that $U\cap V=\varnothing$,
+	$\xi\in U$ and $\upsilon\in V$. In particular,
+	$v(\xi)\not =v(\upsilon)$ (in fact, it is enough to assume $X$ is
+	a $T_{0}$ space to conclude that $v$ is injective).
+
+	Let $\phi\in\ufilters{\charalg{X}}$ be an arbitrary ultrafilter in
+	$\charalg{X}$. Then $\phi$ has the finite intersection property.
+	Since $\charalg{X}$ is a sublattice of the Boolean algebra
+	$\powset{X}$ of subsets of $X$, $\phi$ has the finite intersection
+	property as a subset of $\powset{X}$ (note the parallelism with
+	invariance of compactness under subspace maps). Thus $\phi$
+	extends to an ultrafilter $F$ in $\powset{X}$. Since $X$ is a
+	compact topological space, $F$ converge to some point $\xi\in X$.
+	Equivalently, $\xi$ is an adherent point of $F$. Then
+	$\xi\in\bigcap_{U\in F}\,\clos{U}$. In particular,
+	\begin{align*}
+		\xi & \,\in\,\bigcap\,\left\lbrace \clos{U}
+			\,:\, U\in\phi\right\rbrace
+		\,=\,\bigcap\,\left\lbrace U
+			\,:\, U\in\phi\right\rbrace
+		\text{ .}
+	\end{align*}
+	%
+	Thus $\xi\in U$ for ever $U$ in $\phi$ and then $\phi\subset v(\xi)$.
+	By maximality of $\phi$ and properness of $v(\xi)$, we may conclude
+	that $\phi=v(\xi)$. So, we see $v$ is also surjective.
+
+	Finally, $v:\,X\rightarrow\ufilters{\charalg{X}}$ is a bijective
+ 	map between compact Hausdorff spaces which maps the base
+	$\charalg{X}$ for the topology on $X$ into the base
+	$\charalg{\ufilters{\charalg{X}}}$ for the topology on
+	$\ufilters{\charalg{X}}$: if $V\in\charalg{X}$, by surjectivity
+	of $v$,
+	\begin{align*}
+		v(V) & \,=\,\left\lbrace
+			\left\lbrace U\in\charalg{X}\,:\,\xi\in U
+				\right\rbrace
+				\,:\,\xi\in V\right\rbrace
+			\,=\,\left\lbrace v(\xi)\,:\,\xi\in V
+				\right\rbrace \\
+		& \,=\, \left\lbrace\phi\in\ufilters{\charalg{X}}
+			\,:\,V\in\phi\right\rbrace
+		\text{ .}
+	\end{align*}
+	%
+	In particular, $v(V)\in\charalg{\ufilters{\charalg{X}}}$ and
+	$v(V)$ is an element of the base for the Stone space of $\charalg{X}$.
+	In fact, this shows that $v$ maps the base $\charalg{X}$ of $X$
+	onto the base $\charalg{\ufilters{\charalg{X}}}$. It then follows
+	that $v$ is a homeomorphism.
+\end{proof}
+

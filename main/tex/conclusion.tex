@@ -1,0 +1,299 @@
+\theoremstyle{plain}
+\newtheorem{thmBoolIsCharOfSpec}{Theorem}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remarkTheOtherMaximalityConditions}{Remark}
+\newtheorem*{remarkShorterProof}{Remark}
+
+%------------------
+
+It is more or less clear that $\charalg{X}$ can be extended
+to a functor
+\begin{align*}
+	\charalg{\cdot} & \,:\,\mathbf{Stone}\,\rightarrow\,
+		\mathbf{BoolAlg}
+	\text{ .}
+\end{align*}
+%
+But this is not so for the corresponding map $\ufilters{B}$:
+for instance, if $f:\,B\rightarrow B'$, although
+$f(\phi)=\{f(x)\,:\,x\in\phi\}$ is closed under finite meets
+and can, thus, be extended to a filter $\langle f(\phi)\rangle$
+in a specified way, it is not clear that this filter is either
+maximal or, even, proper. It seems there is no obvious way of
+extending $\ufilters{B}$ to a functor in the direction opposite
+to that of $\charalg{\cdot}$. At least not if we wanted a
+\emph{covariant} functor.
+
+\subsection{An Adjunction}
+Clearly the above paragraph made no sense\dots Let $X,Y$ be
+compact Hausdorff and totally disconnected spaces. Let
+$g:\,X\rightarrow Y$ be a continuous funtion. Then the assignment
+$f(U) =g^{-1}(U)$ determines a lattice homomorphism in the
+opposite direction: $f:\,\charalg{Y}\rightarrow\charalg{X}$, since
+\begin{align*}
+	g^{-1}(U\cap V) & \,=\, g^{-1}(U)\cap g^{-1}(V) \text{ ,}\\
+	g^{-1}(U\cup V) & \,=\, g^{-1}(U)\cup g^{-1}(V) \text{ ,}\\
+	g^{-1}(\varnothing) & \,=\, \varnothing \quad\text{and}\\
+	g^{-1}(Y) & \,=\, X
+	\text{ .}
+\end{align*}
+%
+In particular this lattice homomorphism is a Boolean algebra
+homomorphism. This map $g\mapsto \charalg{g}=f$ respects identities
+and compositions. Thus $\charalg{\cdot}$ is a contravariant functor
+from the category of Stone spaces to the category of Boolean
+algebras.
+
+We now want to extend $\ufilters{B}$ to a functor. As we noted above,
+it makes no sense to try to extend $\ufilters{B}$ to a covariant functor.
+We shall define a contravariant functor which is given by
+$B\mapsto\ufilters{B}$ on objects.
+
+Let $A,B$ be two Boolean algebras and let $f:\,A\rightarrow B$ be a
+Boolean algebra homomorphism. If $\phi\subset B$ be a proper subset,
+then $f^{-1}(\phi)$ is a proper subset of $A$, too. If $\phi$ is a filter
+in $B$, its inverse image $f^{-1}(\phi)$ is a filter in $A$, for
+\begin{align*}
+	f(x\boolprod y) & \,=\, f(x)\boolprod f(y)\quad\text{and} \\
+	y\geq x & \,\Rightarrow\, f(y)\geq f(x)
+	\text{ .}
+\end{align*}
+%
+If $\phi$ is a prime filter and $x\boolsum y\in f^{-1}(\phi)$, then
+$f(x)\boolsum f(y)$ belongs to $\phi$ and, thus, either $f(x)\in\phi$ or
+$f(y)\in\phi$. So, $f^{-1}(\phi)$ is prime, as well. Since $A$ and $B$ are
+Boolean algebras, the notions of prime filter and of ultrafilter --that is,
+maximal filter-- agree.
+
+\begin{remarkTheOtherMaximalityConditions}
+	We may wonder if the other equivalent maximality conditions
+	for a filter in a Boolean algebra are preserved under the
+	operation of taking inverse images.
+
+	If $\phi$ is a proper filter such that, for every $z\in B$
+	either $z\in\phi$ or $\conj{z}\in\phi$, then, given $x\in A$,
+	we have $f(x)\in\phi$, if and only if $f(\conj{x})\not\in\phi$.
+	Thus, $f^{-1}(\phi)$ has the property that, for every $x\in A$,
+	either $x\in f^{-1}(\phi)$ or $\conj{x}\in f^{-1}(\phi)$, but not
+	both. Thus, we see that the two equivalent conditons to being a
+	maximal filter are preserved under the operation of taking inverse
+	image by a lattice homomorphims.
+
+	If $A$ and $B$ were arbitrary lattices, it would not be true that
+	the inverse image of a maximal filter is a maximal filter. However,
+	if $f$ were surjective, the ``forward'' image of a filter would be
+	a filter and it would be true that the nverse image of a maximal
+	filter is a maximal filter.
+\end{remarkTheOtherMaximalityConditions}
+
+To summarise, if $f:\,A\rightarrow B$ is a Boolean algebra homomorphism and
+$\phi$ is an ultrafilter in $B$, the function $g(\phi)=f^{-1}(\phi)\subset A$
+determines a map $g:\,\ufilters{B}\rightarrow\ufilters{A}$. We check now that
+this map is continuous.
+
+A base for the topology on $\ufilters{A}$ is given by the sets of the form
+$u_{A}(x)=\{\psi\in\ufilters{A}\,:\,x\in\psi\}$ with $x\in A$. Let $x\in A$
+be an arbitrary element. Then
+\begin{align*}
+	g^{-1}(u_{A}(x)) & \,=\,\left\lbrace\phi\in\ufilters{B}
+		\,:\,x\in f^{-1}(\phi)\right\rbrace \\
+	& \,=\,\left\lbrace\phi\in\ufilters{B}
+		\,:\,f(x)\in\phi\right\rbrace
+		\,=\,u_{B}(f(x))
+	\text{ .}
+\end{align*}
+%
+Thus, the preimage of an element of the base $\charalg{\ufilters{A}}$
+for the topology on the Stone space of $A$ is an element of the base
+$\charalg{\ufilters{B}}$ for the topology on the Stone space of $B$.
+In particular, $g:\ufilters{B}\rightarrow\ufilters{A}$ is continuous. The
+map $f\mapsto\ufilters{f}=g$ respects identities and compositions, so it
+extends to a contravariant functor from the category of Boolean algebras to
+the category of Stone spaces.
+
+We thus have two contravariant functors
+\begin{center}
+	\begin{tikzcd}
+		\mathbf{Stone}
+			\arrow[r, leftarrow, shift left, "\ufilters{\cdot}"]
+			\arrow[r, rightarrow, shift right, "\charalg{\cdot}"']
+			&
+		\mathbf{BoolAlg}
+	\end{tikzcd}
+\end{center}
+%
+Theorem \ref{thm:stoneofboolisstone} shows that the composition
+$B\mapsto\charalg{\ufilters{B}}$ is naturally isomorphic to the identity
+functor on $\mathbf{BoolAlg}$. This isomorphism is given by the map
+$u(x)=\{\phi\in\ufilters{B}\,:\,x\in\phi\}$ for each Boolean algebra $B$.
+Similarly, theorem \ref{thm:stoneisstoneofbool} shows that
+$X\mapsto\ufilters{\charalg{X}}$ is naturally isomorphic to the identity
+functor in $\mathbf{Stone}$. The isomorphism in this case is given by the
+corresponding function $v(\xi)=\{U\in\charalg{X}\,:\,\xi\in U\}$.
+
+\subsection{The Relation with the Prime Spectrum}
+Let $B$ be a Boolean algebra. We have already seen that the lattice
+ideals are in corresppondence with the ring-theoretic ideals of $B$ seen
+as a Boolean ring. In fact, the correspondence is given by the identity
+map as subsets of $B$. The same is true for prime ideals. Therefore, we may
+conclude that ring-theoretic prime ideals in $B$ are in correspondence with
+lattice ideals in $B$ (by the identity map
+$\id:\,\powset{B}\rightarrow\powset{B}$ on subsets), which are in
+correspondence with prime filters in $B$ (by taking set-theoretic complements
+$I\mapsto\setcomp{I}=B\setmin I$). In particular, ring-theoretic prime ideals
+are exactly the ring-theoretic maximal ideals in $B$.
+All ring-theoretic prime ideals of a Boolean ring $B$ are kernels of
+ring homomorphisms $f:\,B\rightarrow\thetwo$: the canonical projection
+$B\rightarrow B/I$ is a surjective ring homomorphism onto an integral
+domain in which every element is idempotent, hence $B/I\simeq\thetwo$.
+Every lattice homomorphism between Boolean algebras is a ring homomorphism
+between the corresponding Boolean ring structures.
+
+Conversely, every kernel of a ring or lattice homomorphism
+$f:\,B\rightarrow\thetwo$ is a prime ideal, since its complement $f^{-1}(1)$
+is a filter in $B$. Ring (or lattice) prime ideals in a Boolean algebra $B$
+are, therefore, precisely the kernels $f^{-1}(0)$ of ring (or lattice)
+homomorphisms $f:\,B\rightarrow\thetwo$ and ultrafilters (equivalently,
+prime filters) are, precisely, the \emph{shells} $f^{-1}(1)$ of such
+homomorphisms. Thus, the space of ultrafilters in a Boolean algebra is
+in correspondence with the \emph{prime spectrum} of the Boolean ring $B$:
+\begin{center}
+	\begin{tikzcd}
+		\ufilters{B}\arrow[r,"\setcomp{\cdot}"] &
+			\begin{Bmatrix}
+				\text{prime ideals} \\
+				\text{in $B$}
+			\end{Bmatrix} \arrow[r,"\id"] &
+			\spec{B} \\
+		\phi \arrow[r,maps to] &
+			I=\setcomp{\phi}=B\setmin\phi \arrow[r,maps to] &
+			I
+	\end{tikzcd}
+\end{center}
+%
+Consider the extremes of the above diagram. On the one hand, we have
+given $\ufilters{B}$ the topology determined by the base $u(B)$, that is,
+a basic open (closed) set is of the form
+\begin{align*}
+	u(x) & \,=\,\left\lbrace\phi\in\ufilters{B}\,:\,x\in\phi\right\rbrace
+	\text{ ,}
+\end{align*}
+%
+and we have proved that, with this topology, $\ufilters{B}$ is a Stone
+space. We have also proved that $B$ can be ``recovered'' as the
+characteristic algebra of closed and open subsets of $\ufilters{B}$.
+On the other hand, the topology on $\spec{B}$ is determined by the base
+formed by the sets
+\begin{align*}
+	D_{x} & \,=\,\left\lbrace I\subset B\,:\,
+		I\text{ is a prime ideal},\,x\not\in I\right\rbrace
+		\,=\,\spec{B}\setmin V(x)
+	\text{ ,}
+\end{align*}
+%
+where $V(x)$ is the set of (ring-theoretic) prime ideals of $B$ containing
+$x$. By the bijection between ring prime ideals, lattice prime ideals and
+ultrafilters in a Boolean algebra, the sets $D_{x}$ are equal to
+\begin{equation}
+	\label{eq:zariskibasicopen}
+	\begin{aligned}
+		D_{x} & \,=\,\left\lbrace\setcomp{\phi}\,:\,
+				\phi\in\ufilters{B},\,x\in\phi\right\rbrace \\
+		& \,=\,\left\lbrace I\in\spec{X}\,:\,
+				\setcomp{I}\in u(x)\right\rbrace
+	\text{ .}
+	\end{aligned}
+\end{equation}
+%
+In general, for any commutative ring with unit $B$, if $x,y\in B$,
+\begin{align*}
+	D_{x}\cap D_{y} & \,=\, D_{x\cdot y}\text{ ,} \\
+	D_{0} & \,=\, B\quad\text{and} \\
+	D_{1} & \,=\, \varnothing
+	\text{ .}
+\end{align*}
+%
+So, $\{D_{x}\,:x\in B\}$ forms a base for a topology on $\spec{B}$.
+Furthermore, in a Boolean ring, we see, by \eqref{eq:zariskibasicopen}, that
+\begin{align*}
+	\spec{B}\setmin D_{x} & \,=\, D_{\conj{x}}\quad\text{and} \\
+	D_{x}\cup D_{y} & \,=\,
+		(\spec{B}\setmin D_{\conj{x}})\cup
+			(\spec{B}\setmin D_{\conj{y}})
+		\,=\,D_{\conj{\lconj{\conj{x}\cdot\conj{y}}}}
+	\text{ .}
+\end{align*}
+%
+Thus, the collection of sets $D_{x}$ are both open and closed in the topology
+they generate. In fact, these are the only open and closed subsets of
+$\spec{B}$: if $V\subset\spec{B}$ is an open and closed subset, being open,
+there exists a collection of basic open sets $\{D_{x_{i}}\,:\,i\in I\}$
+such that their union is $V$:
+\begin{align*}
+	V & \,=\,\bigcup\,\left\lbrace D_{x_{i}}\,:\,i\in I\right\rbrace \\
+	& \,=\,	\Bigg\lbrace I\in\spec{B} \,:\,\setcomp{I}\in
+			\bigcup_{i\in I}\,u(x_{i})\Bigg\rbrace
+	\text{ ,}
+\end{align*}
+%
+and, being closed, ther exists a collection $\{D_{x_{j}}\,:\,j\in J\}$
+such that their intersection is $V$:
+\begin{align*}
+	V & \,=\,\bigcap\,\left\lbrace D_{x_{i}}\,:\,i\in I\right\rbrace \\
+	& \,=\,	\Bigg\lbrace I\in\spec{B} \,:\,\setcomp{I}\in
+			\bigcap_{j\in J}\,u(x_{j})\Bigg\rbrace
+	\text{ .}
+\end{align*}
+%
+Since $I\mapsto\setcomp{I}$ is bijective, the set
+\begin{align*}
+	U & \,:=\, \bigcup_{i\in I}\,u(x_{i}) \,=\,\bigcap_{j\in J}\,u(x_{j})
+\end{align*}
+%
+is both open and closed in $\ufilters{B}$. But since $\ufilters{B}$ is
+compact and $U$ is closed, $U$ must be compact. Therefore,
+\begin{align*}
+	U & \,=\,u(x_{i_{1}})\cup\,\cdots\,\cup u(x_{i_{k}})
+\end{align*}
+%
+and
+\begin{align*}
+	V & \,=\,D_{x_{i_{1}}}\cup\,\cdots\,\cup D_{x_{i_{k}}}
+\end{align*}
+%
+But then $V$ is equal to $D_{y}$ for some $y\in B$.
+
+\begin{remarkShorterProof}
+	Another --perhaps shorter-- proof of this fact consists in showing
+	first that $\spec{B}$ is, in general, compact (though maybe not
+	Hausdorff). If $V\subset\spec{B}$ is both open and closed, being
+	open it is a union of basic open subsets $D_{x}$ and, being closed,
+	it is compact and the cover can be replaced by a finite subcover
+	$\{D_{x_{1}},\,\dots,\,D_{x_{k}}\}$. Since a finite union of
+	these basic open subsets is, in a Boolean ring, equal to some
+	basic open subset $D_{y}$, we conclude that $V= D_{y}$ and that
+	the basic open subsets $D_{x}$ are the only open and closed subsets
+	of $\spec{B}$. This proof is rather similar to the proof of
+	\ref{thm:charalg}.
+\end{remarkShorterProof}
+
+We can then prove the following theorem, analogous to
+\ref{thm:stoneofboolisstone}.
+
+\begin{thmBoolIsCharOfSpec}\label{thm:boolischarofspec}
+	Let $B$ be a Boolean ring. The prime spectrum of $B$, $\spec{B}$,
+	with its Zariski topology determined by the sets $D_{x}$ $x\in B$
+	is a Stone space, a compact Hausdorff totally disconnected
+	topological space. The map $D:\,B\rightarrow\powset{\spec{B}}$
+	given by
+	\begin{align*}
+		D(x) & \,=\, D_{x} \,=\,\left\lbrace I\in\spec{B}\,:\,
+			x\not\in I\right\rbrace
+	\end{align*}
+	%
+	determines a Boolean algebra isomorphism from $B$ onto the
+	characteristic algebra $\charalg{\spec{B}}$ of open and closed
+	subsets of the prime spectrum of $B$.
+\end{thmBoolIsCharOfSpec}
+

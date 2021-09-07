@@ -1,0 +1,101 @@
+
+
+The two-element set $\bb{F}_{2}$ con be ordered:
+$0\leq 0\leq 1\leq 1$, for example. The power set $\powset{X}$ of a set
+$X$ can be ordered by inclusion: if $A,B\subset X$, then we say $A\leq B$ if
+$A\subset B$. In the first case, we have a totally ordered set. In the second
+case, the set is merely partially ordered. Being a field, $\bb{F}_{2}$ is
+endowed with the operations $\emph{sum}$ and $\emph{product}$. These
+operations satisfy the following (in)equalities:
+% \begin{align*}
+	% 0\cdot 0 & \,=\, 0 \qquad\text{,} & 0 + 0 & \,=\, 0 \qquad\text{,} &
+		% 0 + 0 + 0\cdot 0 & \,=\, 0 \text{ ,}\\
+	% 0\cdot 1 & \,=\, 0 \qquad\text{,} & 0 + 1 & \,=\, 1 \qquad\text{,} &
+		% 0 + 1 +0\cdot 1 & \,=\, 1 \text{ ,}\\
+	% 1\cdot 0 & \,=\, 0 \qquad\text{,} & 1 + 0 & \,=\, 1 \qquad\text{,} &
+		% 1 + 0 + 1\cdot 0 & \,=\, 1 \text{ ,}\\
+	% 1\cdot 1 & \,=\, 1 \qquad\text{,} & 1 + 1 & \,=\, 0 \qquad\text{and} &
+		% 1 + 1 + 1\cdot 1 & \,=\, 1 \text{ .}
+% \end{align*}
+% %
+% 
+\begin{align*}
+	0\cdot 0 & \,=\, 0 \qquad & 0 + 0 & \,=\, 0 \qquad &
+		0 + 0 + 0\cdot 0 & \,=\, 0 \\
+	0\cdot 1 & \,=\, 0 \qquad & 0 + 1 & \,=\, 1 \qquad &
+		0 + 1 +0\cdot 1 & \,=\, 1 \\
+	1\cdot 0 & \,=\, 0 \qquad & 1 + 0 & \,=\, 1 \qquad &
+		1 + 0 + 1\cdot 0 & \,=\, 1 \\
+	1\cdot 1 & \,=\, 1 \qquad & 1 + 1 & \,=\, 0 \qquad &
+		1 + 1 + 1\cdot 1 & \,=\, 1 
+\end{align*}
+%
+We therefore define the (unnamed) operations $\boolprod$ and $\boolsum$ on
+$\bb{F}_{2}$ by
+\begin{align*}
+	a\boolprod b & \,:=\, a\cdot b \\
+	a\boolsum b & \,:=\, a + b + a\cdot b
+	\text{ .}
+\end{align*}
+%
+It then follows that
+\begin{align*}
+	0\boolprod 0 & \,=\, 0\boolprod 1 \,=\, 1\boolprod 0 \,=\, 0
+		\text{ ,} \\
+	1\boolprod 1 & \,=\, 1 \text{ ,} \\
+	0\boolsum 0 & \,=\, 0 \quad\text{and} \\
+	0\boolsum 1 & \,=\, 1\boolsum 0 \,=\, 1\boolsum 1 \,=\, 1
+		\text{ .}
+\end{align*}
+%
+In particular, $0\boolprod 1=0$ and $0\boolsum 1=1$.
+
+For the power set of a set $X$, we have the binary operations $\cap$ and $\cup$.
+These operations are related to inclusion in the following way:
+\begin{align*}
+	\varnothing \,\subset\, A & \,\subset\, X \text{ ,} \\
+	A\cap B & \,\subset\, A \quad\text{and} \\
+	A & \,\subset\, A\cup B
+\end{align*}
+%
+for all subsets $A,B\in\powset{X}$. If we defined $\boolprod$ and $\boolsum$
+on $\powset{X}$ to mean, respectively, the operations of intersection and
+union, then, with respect to complementation
+\begin{align*}
+	A\boolprod \setcomp{A} & \,=\, \varnothing \quad\text{and} \\
+	A\boolsum \setcomp{A} & \,=\, X \text{ .}
+\end{align*}
+%
+
+In both situations each element $x$ in the corresponding set $\bb{F}_{2}$ or
+$\powset{X}$ has a \emph{complementary} element $\conj{x}$ such that
+$x\boolprod\conj{x}$ equals the smallest element and $x\boolsum\conj{x}$
+equals the greatest element in the partially ordered set.
+
+For another example, consider a set $X$ and, in $\powset{X}$, the
+subcollection of sets $A\in\powset{X}$ which are either finite or
+\emph{cofinite} in $X$, that is to say, either $\# A<\infty$ or
+$\# \setcomp{A}<\infty$. Let $\mathsf{Z}(X)$ denote this collection.
+Given subsets $A,B\in\powset{X}$,
+\begin{itemize}
+	\item[i] if $A$ is finite, then $\setcomp{A}$ is cofinite
+		(and if $A$ is cofinite, then $\setcomp{A}$ is finite),
+	\item[ii] if $A$ and $B$ are both finite sets, then both
+		$A\cap B$ and $A\cup B$ are finite sets,
+	\item[iii] if $A$ is finite and $B$ is cofinite in $X$, then, since
+		\begin{align*}
+			A\cap B & \,\subset\, A \quad\text{and} \\
+			A\cup B & \,\supset\, B \text{ ,}
+		\end{align*}
+		%
+		their union is cofinite and their intersection is finite.
+\end{itemize}
+This shows that the collection $\mathsf{Z}(X)$ of ssubsets $A\in\powset{X}$
+which are either finite or cofinite in $X$, is closed with respect to the
+operations of pairwise union, pairwise intersection and complementation
+defined in $\powset{X}$. It is also true that both $X$ and $\varnothing$
+belong to $\mathsf{Z}(X)$. So $\mathsf{Z}(X)$ shares some struture with
+$\powset{X}$, which can then be said to be inherited from $\powset{X}$,
+in a sense.
+
+

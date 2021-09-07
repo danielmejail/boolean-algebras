@@ -1,0 +1,596 @@
+\theoremstyle{plain}
+\newtheorem{thmBoolAlgIsoBoolRng}{Theorem}[section]
+\newtheorem{propoAbsorptiveLaws}[thmBoolAlgIsoBoolRng]{Proposition}
+\newtheorem{thmJoinSemilat}[thmBoolAlgIsoBoolRng]{Theorem}
+\newtheorem{thmJoinSemilatChar}[thmBoolAlgIsoBoolRng]{Theorem}
+\newtheorem{thmMeetSemilat}[thmBoolAlgIsoBoolRng]{Theorem}
+\newtheorem{thmMeetSemilatChar}[thmBoolAlgIsoBoolRng]{Theorem}
+\newtheorem{lemmaDualDistLaw}[thmBoolAlgIsoBoolRng]{Lemma}
+\newtheorem{propoDistLat}[thmBoolAlgIsoBoolRng]{Proposition}
+\newtheorem{thmBoolAlgIsBoolRng}[thmBoolAlgIsoBoolRng]{Theorem}
+\newtheorem{lemmaBoolRngIsDistLat}[thmBoolAlgIsoBoolRng]{Lemma}
+\newtheorem{thmBoolRngIsBoolAlg}[thmBoolAlgIsoBoolRng]{Theorem}
+\newtheorem{lemmaSymmDiff}[thmBoolAlgIsoBoolRng]{Lemma}
+
+% \newtheorem{propoLatticeJoinsAndMeets}{Proposition}
+
+\theoremstyle{remark}
+\newtheorem*{remarkJoinEmptySet}{Remark}
+\newtheorem*{remarkMeetEmptySet}{Remark}
+\newtheorem*{remarkBoolAlgIsFullInLat}{Remark}
+
+
+%-----------------------
+
+A \emph{partially ordered set} (also \emph{poset}) is defined to be a set
+together with a binary relation, called the \emph{order relation}, which is
+\emph{reflexive}, \emph{transitive} and \emph{antisymmetric}. A poset
+is said to be \emph{totally ordered}, if the order relation is
+\emph{dychotomic}.
+
+Let $(P,\leq)$ be a poset and let $Q\subset P$ be an arbitrary subset. If
+we restrict the ordered relation $\leq$ to elements belonging to $Q$, then
+a partial order is obtained on $Q$. The pair $(Q,\leq)$ is then a poset, as
+well. We shall say in this case that $Q$ is a \emph{subposet} of $P$ or that
+$Q$ \emph{inherits} the poset structure --or the order relation-- from $P$.
+
+A \emph{chain} in a partially ordered set is a subset which is totally
+ordered by the order relation inherited from the poset.
+
+\paragraph{Examples}
+So, we see that $\bb{F}_{2}$, $\powset{X}$ and $\mathsf{Z}(X)$ are
+partially ordered sets, if endowed with the order relations defined above.
+The two-element set $\bb{F}_{2}$ is totally ordered but, in general,
+$\powset{X}$ and $\mathsf{Z}(X)$ are not. 
+
+\subsection{Joins and Meets}
+Given a partially ordered set $(P,\leq)$ and a subset $A\subset P$, an
+\emph{upper bound} for $A$ in $P$ is an element $x\in P$ such that
+\begin{align*}
+	a & \,\leq\, x
+\end{align*}
+%
+for all $a\in A$. We shall say that an element $x\in P$ is a \emph{supremum}
+(or join) for $A$ in $P$, if it is a least upper bound for $A$ in $P$, that
+is to say
+\begin{itemize}
+	\item[i] $a\leq x$ for all $a\in A$ and
+	\item[ii] if $b$ satisfies $a\leq b$ for all $a\in A$, then
+		$x\leq b$.
+\end{itemize}
+%
+We denote it by $\bigboolsum\,A$. Upper bounds and therefore joins need not
+exist for arbitrary subsets of a poset $P$. By the antisymmetry of $\leq$
+in $P$, if a join for a subset $A$ exists, then it must be unique.
+Given a poset $(P,\leq)$ and a pair of elements $x,y\in P$, the
+\emph{join} of $x$ and $y$ is the supremum (join) for the set $\{x,y\}$ in
+$P$, if it exists. We denote it by $\bigboolsum\,\{x,y\}=x\boolsum y$.
+
+\begin{remarkJoinEmptySet}
+	Let $(P,\leq)$ be a poset. Every element $x\in P$ is, trivially,
+	an upper bound for the empty subset $\varnothing\subset P$. This
+	does not imply, however, that there exists a join for $\varnothing$.
+	If the empty subset admits a join, $x=\bigboolsum\varnothing$, then
+	this means that $x\leq b$ for every element $b\in P$.
+\end{remarkJoinEmptySet}
+
+Dually, given a poset $(P,\leq)$ and a subset $A\subset P$, we say that an
+element $x\in P$ is a \emph{lower bound} for $A$ in $P$, if
+\begin{align*}
+	a & \,\geq\, x
+\end{align*}
+%
+for all $a \in A$. An \emph{infimum} (or meet) for $A$ is a lower bound
+for $A$ which greatest among the lower bounds for $A$, this means
+\begin{itemize}
+	\item[i] $a\geq x$ for all $a\in A$ and
+	\item[ii] if $b\in P$ satisfies $a\geq b$ for all $a\in A$, then
+		$x\geq b$.
+\end{itemize}
+%
+If such an element exists, we shall denote it by $\bigboolprod A$.
+Lower bounds, as well as meets, need not exist. However, if a meet for a
+subset $A$ exists, then it must be unique by the antisymmetry property
+of the order relation $\leq$ in $P$. Given two elements $x,y\in P$,
+the \emph{meet} of $x$ and $y$ is, if it exists, the infimum (meet) for
+the set $\{x,y\}$ in $P$ and is denoted by
+$\bigboolprod\,\{x,y\}=x\boolprod y$.
+
+\begin{remarkMeetEmptySet}
+	Let $(P,\leq)$ be a poset. Every element $x\in P$ is, trivially,
+	an lower bound for the empty subset $\varnothing\subset P$. This
+	does not imply, however, that there exists a meet for $\varnothing$.
+	If the empty subset admits a meet, $x=\bigboolprod\varnothing$, then
+	this means that $x\geq b$ for every element $b\in P$.
+\end{remarkMeetEmptySet}
+
+\paragraph{Example: $\powset{X}$}
+In $\powset{X}$, every subset $\cal{A}\subset\powset{X}$ admits a supremum
+(as well as an infimum) in $\powset{X}$. In particular, chains in
+$\powset{X}$ have upper and lower bounds.
+
+\paragraph{Example: $\mathsf{Z}(X)$}
+In the subposet $\mathsf{Z}(X)$, not every subset has a supremum
+and an infimum, although every subset (subset of $\mathsf{Z}(X)$) is
+bounded by $X$ from above and by $\varnothing$ from below. For instance,
+if $X=\bb{N}$ and
+\begin{align*}
+	\cal{A} & \,=\, \left\lbrace \{2n\} \,:\, n\in \bb{N}\right\rbrace
+	\text{ ,}
+\end{align*}
+%
+then any upper bound must contain every even number and must, in particular,
+be cofinite (in order to belong to $\mathsf{Z}(\bb{N})$). So there are
+(nontrivial) upper bounds, but there is not a smallest one. Similarly, if
+\begin{align*}
+	\cal{A} & \,=\, \left\lbrace 2\cdot\bb{N} \cup \{n\leq m\} \,:\,
+		n\in\bb{N} \right\rbrace
+	\text{ ,}
+\end{align*}
+%
+then this set has no infimum. In $\mathsf{Z}(X)$, however, if
+$\cal{A}\subset\mathsf{Z}(X)$ is finite, then it admits both a join and a
+meet. As it has been mentioned, the poset $\powset{X}$ admits supremums and
+infimums for every given subset $\cal{A}\subset\powset{X}$. In particular,
+it admits joins and meets for every given pair $A,B\in\powset{X}$, which are
+given, respectively, by pairwise union and intersetion of $A$ and $B$. Since
+$\mathsf{Z}(X)$ is closed with respect to pairwise unions and intersections,
+$\mathsf{Z}(X)$ also admits joins and meets. The poset $\mathsf{Z}(X)$
+also admits a least element, $\varnothing$, and a greatest element, $X$.
+
+\subsection{Join-semilattices and Meet-semilattices}
+Let $(P.\leq)$ be a partially ordered set. If every pair of elements
+$x,y\in P$ has a join $x\boolsum y$ and $P$ has also an element $0\in P$
+which is less than every other element of $P$, then the following equalities
+hold for every $x,y,z\in P$:
+\begin{align}%\begin{equation}
+	\label{eq:joinsemilat}
+	\begin{split}%\begin{aligned}
+	x\boolsum x & \,=\, x \text{ ,}\\
+	x\boolsum y & \,=\, y\boolsum x \text{ ,}\\
+	x\boolsum (y\boolsum z) & \,=\, (x\boolsum y)\boolsum z \text{ ,}\\
+	x\boolsum 0 & \,=\, x
+	\text{ .}
+	\end{split}%\end{aligned}
+\end{align}%\end{equation}
+%
+Equivalently, we may assume that every finite subset (including the empty
+subset) admits a join (supremum): if this is true, then every set containing
+exactly two elements admits a join and the fact that there exists an
+element $x=\bigboolsum\varnothing$ means that $x$ is less than every other
+element of $P$; conversely, if every pair of elements admits a join in $P$,
+then, by induction in the number of elements, every finite subset admits a
+join, as well, and, since $x\in P$ is less than every other element of $P$,
+then, by definition, $x=\bigboolsum\varnothing$. We summarise this paragraph
+in the following theorem.
+
+\begin{thmJoinSemilat}\label{thm:joinsemilat}
+	Let $(P,\leq)$ be a poset. Such that every finite (or empty) set
+	admits a join. Then $(P,\boolsum,0)$ has the structure of a
+	commutative monoid in which every element is idempotent, that is to
+	say, equations \eqref{eq:joinsemilat} hold.
+\end{thmJoinSemilat}
+
+Conversely, triples $(P,\boolsum,0)$ satisfying \eqref{eq:joinsemilat}
+can also be characterised in terms of an order relation, as the following
+theorem shows.
+
+\begin{thmJoinSemilatChar}\label{thm:joinsemilatchar}
+	Let $(P,\boolsum,0)$ be a commutative monoid in which every element
+	is an idempotent. Then there exists a unique partial order on $P$
+	such that $x\boolsum y$ is the join of $x$ and $y$, and $0$ is the
+	least element.
+\end{thmJoinSemilatChar}
+
+\begin{proof}
+	If $\leq$ is such a partial order on $P$, then $x\leq y$ implies
+	$x\boolsum y=\mathsf{join}(\{x,y\})=y$ and, conversely,
+	$x\boolsum y=y$ implies $\mathsf{join}(\{x,y\})=y$ and $x\leq y$.
+
+	If we define a binary relation $\leq$ on $P$ by
+	$x\leq y$ if $x\boolsum y=y$, then: \textit{(i)} idempotency of
+	$\boolsum$ implies reflexivity of $\leq$, \textit{(ii)}
+	commutativity implies antisymmetry and \textit{(iii)} associativity
+	implies transitivity. So $\leq$ is a partial order on $P$.
+
+	Given $x,y\in P$, associativity and idempotency imply
+	$x\boolsum(x\boolsum y)=(x\boolsum x)\boolsum y=x\boolsum y$, so
+	$x\leq x\boolsum y$ by definition of $\leq$. Similarly, by
+	commutativity, $y\leq x\boolsum y$, so $x\boolsum y$ is an upper bound
+	for the subset $\{x,y\}$. If $z\in P$ is such that $x,y\leq z$, then
+	$(x\boolsum y)\boolsum z=x\boolsum(y\boolsum z)=z$. This shows that
+	$x\boolsum y$ is a least upper bound for $\{x,y\}$, which means that
+	$x\boolsum y$ is the join of $x$ and $y$. Finally, since $0$ is the
+	neutral element, it is the least element in $P$.
+\end{proof}
+
+A set $P$ together with a binary operation $\boolsum$ and a distinguished
+element $0$ such that equations \eqref{eq:joinsemilat} hold has the structure
+of a \emph{(join-)semilattice}. Theorems \ref{thm:joinsemilat} and
+\ref{thm:joinsemilatchar} show that there is a correspondence between posets
+$P$ having all finite joins (in particular, we are assuming that
+$\bigboolsum\varnothing$ exists, which is equivalent to $P$ having a least
+element) and join-semilattices (that is, commutative monoids in which every
+element is idempotent):
+\begin{center}
+\begin{tikzcd}
+	\begin{Bmatrix}
+		\text{posets }(P,\leq)\text{ having} \\
+		\text{all finite joins}
+	\end{Bmatrix}
+	\arrow[r] &
+	\begin{Bmatrix}
+		\text{join-semilattices} \\
+		(P,\boolsum,0)
+	\end{Bmatrix}
+\end{tikzcd}
+\end{center}
+%
+The image via this arrow of a poset $(P,\leq)$ is the triple $(P,\boolsum,0)$
+consisting of the set $P$, the binary join operation determined by the
+order relation $\leq$ and the least element $0=\bigboolsum\varnothing$.
+If, conversely, $(P,\boolsum,0)$ is a join-semilattice, then the relation
+given by $x\leq y$ if $x\boolsum y=y$ is a partial order on $P$ such that
+$x\boolsum y$ is the join of $x$ and $y$ and $0$ is the least element in $P$.
+This means that the triple $(P,\boolsum,0)$ is the image of $(P,\leq)$ by
+the above arrow. The fact that the order $\leq$ is unique with this property
+means that this arrow is a correspondence.
+
+However, this map is not an equivalence in the sense that, although a
+join-semilattice homomorphism must be an order-preserving morphism, there
+are order-preserving morphisms which do not respect the corresponding
+semilattice structure: for example, if $\bb{N}=\{1,\,2,\,\dots\}$
+denotes the set of natural numbers with their usual ordering, and if
+$\bb{N}_{0}=\bb{N}\cup\{0\}$ with $0\leq n$ for $n\in\bb{N}$, then
+the inclusion $\bb{N}\hookrightarrow\bb{N}_{0}$ is order-preserving,
+but does not preserve the unit. This implies that the reverse arrow
+from join-semilattices to posets with all finite joins, although a
+bijection at the level of objects, is merely an injection at the level of
+morphisms.
+
+The notions of lower bound, meet and greatest element are dual to those
+of upper bound, join and least element. By reversing all the inequalities
+implicit in the previous discusion, we arrive at analogous conclusions.
+
+\begin{thmMeetSemilat}\label{thm:meetsemilat}
+	Let $(P,\leq)$ be a poset such that every finite subset admits a
+	meet. Let $1=\bigboolprod\varnothing$ denote the greatest element
+	and let $x\boolprod y$ denote the meet of elements $x$ and $y$ in $P$.
+	Then $(P,\boolprod,1)$ has the structure of a commutative monoid
+	in which every element is idempotent. This means that the equations
+	\begin{equation}
+		\label{eq:meetsemilat}
+		\begin{aligned}
+			x\boolprod x & \,=\, x\text{ ,}\\
+			x\boolprod y & \,=\, y\boolprod x\text{ ,}\\
+			x\boolprod(y\boolprod z) & \,=\,
+				(x\boolprod y\boolprod z)\text{ ,}\\
+			x\boolprod 1 & \,=\, x
+				\text{ .}
+		\end{aligned}
+	\end{equation}
+	%
+	hold for every $x,y,z\in P$.
+\end{thmMeetSemilat}
+
+For the sake of symmetry, we shall call a triple $(P,\boolprod,1)$
+such that equations \eqref{eq:meetsemilat} hold a \emph{(meet-)semilattice}.
+
+\begin{thmMeetSemilatChar}\label{thm:meetsemilatchar}
+	Let $(P,\boolprod,1)$ be a meet-semilattice. Then there exists a
+	unique partial order on $P$ such that $x\boolprod y$ is the meet
+	of $x$ and $y$, and $1$ is the greates element.
+\end{thmMeetSemilatChar}
+
+\subsection{Boolean Algebras}
+A \emph{lattice} is a partially ordered set $(P,\leq)$ such that every
+pair of elements $x,y\in P$ has a meet and a join $x\boolprod y$ and
+$x\boolsum y$, respectively, and there is a least and a greatest element
+$0$ and $1$, respectively, in $P$ (or, equivalently, every finite (possibly
+empty) subset has a meet and a join in $P$); we denote it by
+$(P,\leq,\boolsum,\boolprod,0,1)$.
+By theorems \ref{thm:joinsemilatchar} and \ref{thm:meetsemilatchar},
+a lattice can be characterised in the following way: let $P$ be a set,
+$\boolsum$ and $\boolprod$ binary operations on $P$ and $0$ and $1$
+distinguished elements of $P$ such that $(P,\boolsum,0)$ is a
+join-semilattice and $(P,\boolprod,1)$ is a meet-semilattice.
+Then this defines a lattice structure on $P$, if and only if, in additon,
+the induced partial orders are \emph{opposite} to each other, that is to say,
+$x\boolsum y=y\Leftrightarrow x\boolprod y=x$, for every $x,y\in P$.
+This additional condition is a necessary condition for $P$ to be a poset
+when given any of the two partial orders, since in any poset
+$\mathsf{join}(x,y)=y\Leftrightarrow\mathsf{meet}(x,y)=x$. Conversely,
+if $\leq$ is the partial order on $P$ induced by $(P,\boolsum,0)$, say,
+then, on the one hand,
+\begin{align*}
+	x & \,\leq\, y \quad\Leftrightarrow\quad
+	y\,=\,\mathsf{join}(x,y)\,=\,x\boolsum y \quad\Leftrightarrow\quad
+	x\,=\,x\boolprod y
+	\text{ ,}
+\end{align*}
+%
+which means that, in the order induced by $(P,\boolsum,0)$, $x\boolprod y$
+equals $\mathsf{meet}(x,y)$; on the other hand, $x\boolprod 1=x$ for all
+$x\in P$ implies $x\boolsum 1=1$ for all $x\in P$ and, thus, $1$ is the
+greatest element in $P$. Thus, by uniqueness, the partial order induced by
+$(P,\boolsum,0)$ coincides with the (opposite to the) one induced by
+$(P,\boolprod,1)$, meaning that $P$ is a poset with join $\boolsum$,
+meet $\boolprod$, least element $0$ and greatest element $1$.
+
+\begin{propoAbsorptiveLaws}\label{thm:absorptivelaws}
+	Suppose $(P,\boolsum,0)$ and $(P,\boolprod,1)$ are semilattices.
+	Then $(P,\boolsum,\boolprod,0,1)$ is a lattice, if and only if
+	the \emph{absorptive laws}
+	\begin{equation}
+		\label{eq:absorptivelaws}
+		\begin{aligned}
+			x\boolprod (x\boolsum y) & \,=\, x \\
+			x\boolsum (x\boolprod y) & \,=\, x
+		\end{aligned}
+	\end{equation}
+	%
+	are satisfied for all $x,y\in P$.
+\end{propoAbsorptiveLaws}
+
+\begin{proof}
+	If the equations \eqref{eq:absorptivelaws} hold, then
+	$x\boolsum y=y\Leftrightarrow x\boolprod y=x$. Conversely, in a
+	lattice, the absorptive laws hold (take for instance $P=\powset{X}$
+	and notice that only the poset-with-finite-joins-and-meets structure
+	is needed).
+\end{proof}
+
+A \emph{distributive lattice} is a lattice $P$ in which the
+\emph{distributive law} holds: for every $x,y,z\in P$,
+\begin{equation}
+	\label{eq:distlaw}
+	\begin{aligned}
+		x\boolprod (y\boolsum z) & \,=\,
+			(x\boolprod y)\boolsum (x\boolprod z)
+	\end{aligned}
+\end{equation}
+
+\begin{lemmaDualDistLaw}\label{thm:dualdistlaw}
+	If $P$ is a distributive lattice, then the \emph{dual} of the
+	distributive law \eqref{eq:distlaw} holds, as well:
+	for all $x,y,z\in P$,
+	\begin{equation}
+		\label{eq:dualdistlaw}
+		\begin{aligned}
+			x\boolsum (y\boolprod z) & \,=\,
+				(x\boolsum y)\boolprod (x\boolsum z)
+		\end{aligned}
+	\end{equation}
+	%
+	Conversely, in an arbirary lattice, the identity
+	\eqref{eq:dualdistlaw} implies the identity \eqref{eq:distlaw}.
+	Thus, a distributive lattice is characterised by either of
+	\eqref{eq:distlaw} or \eqref{eq:dualdistlaw}.
+\end{lemmaDualDistLaw}
+
+Distributive lattices have the following important property.
+
+\begin{propoDistLat}\label{thm:distlat}
+	Let $P$ be a distributive lattice and let $x,y,z\in P$. Then there
+	exists at most one element $w\in P$ satisfying both
+	\begin{align*}
+		w\boolprod x & \,=\, y\quad\text{and} \\
+		w\boolsum x & \,=\, z\text{ .}
+	\end{align*}
+	%
+\end{propoDistLat}
+
+Let $x$ be and element of an arbitrary lattice $P$. A \emph{complement} of
+$x$ in $P$ is an element $\conj{x}\in P$ satisfying both
+$\conj{x}\boolprod x=0$ and $\conj{x}\boolsum x=1$. Complements need not
+exist, in general; and, if they do, they need not be unique. Proposition
+\ref{thm:distlat} says that in a distributive lattice $P$, if an element $x$
+admits a complement, then it must be the only complement in $P$. A
+\emph{Boolean algebra} is a distributive lattice $P$ together with an
+additional unary operation $\conj{\cdot}:\,P\rightarrow P$ such that,
+for every $x\in P$, the element $\conj{x}$ is a complement of $x$.
+
+\begin{remarkBoolAlgIsFullInLat}
+	If map between lattices preserves the lattice structure, that is,
+	joins, meets, least element and greatest element, then it must
+	also preserve the complementation relation. In particular, every
+	lattice morphism is a Boolean algebra morphism.
+\end{remarkBoolAlgIsFullInLat}
+
+\subsection{Boolean Algebras and Boolean Rings}
+Let $P$ be a Boolean algebra. The \emph{symmetric difference} operation
+in $P$ is defined as the following binary operation: if $x,y\in P$, let
+\begin{align*}
+	x + y & \,=\, (x\boolprod\conj{y})\boolsum(\conj{x}\boolprod y)
+	\text{ .}
+\end{align*}
+%
+Appealing to the identities \eqref{eq:distlaw} and \eqref{eq:dualdistlaw},
+\begin{align*}
+	x + y & \,=\, (x\boolsum y)\boolprod(\conj{x}\boolsum\conj{y})
+	\text{ ,}
+\end{align*}
+%
+and by existence and uniqueness of complements in a Boolean algebra,
+\begin{align*}
+	\conj{x}\boolsum\conj{y} & \,=\, \lconj{(x\boolprod y)}
+	\text{ .}
+\end{align*}
+%
+So, equivalently,
+\begin{align*}
+	x + y & \,=\, (x\boolsum y)\boolprod\lconj{(x\boolprod y)}
+	\text{ .}
+\end{align*}
+%
+
+The proof of this equivalence made use of one of the \emph{De Morgan laws}:
+\begin{equation}
+	\label{eq:demorganlaws}
+	\begin{aligned}
+		\lconj{(x\boolprod y)} & \,=\, \conj{x}\boolsum\conj{y}
+			\text{ ,}\\
+		\lconj{(x\boolsum y)}& \,=\, \conj{x}\boolprod\conj{y}
+		\text{ .}
+	\end{aligned}
+\end{equation}
+%
+Both of these identities hold in a Boolean algebra.
+
+\begin{thmBoolAlgIsBoolRng}\label{thm:boolalgisboolrng}
+	Let $P$ be a Boolean algebra, let $\boolsum$, $\boolprod$, $0$ and
+	$1$ be its join, meet, least element and greatest element. Let
+	$+$ denote its symmetric difference. Then, for every $x,y,z\in P$,
+	\begin{align*}
+		x\boolprod (y+z) & \,=\, (x\boolprod y) + (x\boolprod z)
+			\text{ ,} \\
+		x + (y+z) & \,=\, (x+y) + z\text{ ,} \\
+		x + y & \,=\, y + x \text{ ,} \\
+		x + x & \,=\, 0\quad\text{and} \\
+		x + 0 & \,=\, x
+		\text{ .}
+	\end{align*}
+	%
+\end{thmBoolAlgIsBoolRng}
+
+These identities, together with
+\begin{align*}
+	x \boolprod y & \,=\, y\boolprod x \text{ ,} \\
+	x\boolprod 1 & \,=\, x\quad\text{and} \\
+	x\boolprod x & \,=\, x
+	\text{ ,}
+\end{align*}
+%
+show that $(P,+,0)$ is an Abelian group (in which every element
+is nilpotent) and that $(P,+,\boolprod,0,1)$ is a commutative
+ring with unit in which every element is idempotent.
+
+A \emph{Boolean ring} is a ring with unit $(A,+,\cdot,0,1)$ in which
+every element is idempotent, that is, $x^{2}=x\cdot x=x$ for all $x\in A$.
+So, \ref{thm:boolalgisboolrng} shows there exists an arrow sending
+each Boolean algebra to an associated Boolean ring:
+\begin{center}
+	\begin{tikzcd}
+		\begin{Bmatrix}
+			\text{Boolean} \\
+			\text{algebras}
+		\end{Bmatrix} \arrow[r] &
+			\begin{Bmatrix}
+				\text{Boolean} \\
+				\text{rings}
+			\end{Bmatrix} \\
+		(P,\boolsum,\boolprod,0,1,\conj{\cdot})\arrow[r, maps to] &
+			(P,+,\cdot,0,1)
+	\end{tikzcd}
+\end{center}
+where $+$ is defined as the symmetric difference operation and
+$x\cdot y=x\boolprod y$. Since a Boolean algebra morphism preserves
+the operations $\boolsum$, $\boolprod$ and $\conj{\cdot}$ it must also
+preserve symmetric difference, and since such morphisms preserve greatest
+and least elements, they must preserve the neutral elements for addition
+and product in the associated Boolean rings. In other words, every morphism
+between Boolean algebras \emph{is, too,} a morphism between the corresponding
+Boolean rings.
+
+Boolean rings are commutative and every element of a Boolean ring satisfies
+$x+x=0$. This implies that $(A,\cdot,1)$ satisfies the identities
+\eqref{eq:meetsemilat}. By theorem \ref{thm:meetsemilatchar} there is a
+unique partial order on $A$ such that $x\cdot y =\mathsf{meet}(x,y)$ and
+$1$ is the greatest element: this order is defined by $x\leq y$ if
+$x\cdot y=x$.
+
+\begin{lemmaBoolRngIsDistLat}\label{thm:boolrngisdistlat}
+	Let $(A,+,\cdot,0,1)$ be a Boolean ring and let $\leq$ be the
+	unique partial order determined by the meet-semilattice
+	$(A,\cdot,1)$. Explicitly, $x\leq y$ if $x\cdot y=x$.
+	For $x,y\in A$, let $x\boolsum y= x+y+x\cdot y$, and let
+	$x\boolprod y=x\cdot y$. Then $0$ is the least element in $A$,
+	the following absorptive law holds:
+	\begin{align*}
+		x\boolprod (x\boolsum y) & \,=\, x
+		\text{ ,}
+	\end{align*}
+	%
+	the product $\boolprod$ distributes over $\boolsum$
+	and also $x\boolsum y= \mathsf{join}(x,y)$.
+\end{lemmaBoolRngIsDistLat}
+
+The previous lemma implies that every Boolean ring has the structure of a
+distributive lattice and that this structure is unique, if we want
+$x\cdot y=\mathsf{meet}(x,y)$ and $1$ to be the greatest element. Moreover,
+since $(1+x)\cdot x=0$ and $(1+x) + x + (1+x)\cdot x =1$, every element
+is complemented. This complement must be unique.
+
+\begin{thmBoolRngIsBoolAlg}\label{thm:boolrngisboolalg}
+	If $(A,+,\cdot,0,1)$ is a Boolean ring, then, with the partial
+	order defined in \ref{thm:boolrngisdistlat} and the unary operation
+	$x\mapsto \conj{x}=1+x$, the distributive lattice $A$ is a Boolean
+	algebra.
+\end{thmBoolRngIsBoolAlg}
+
+Theorem \ref{thm:boolrngisboolalg} shows the existence of an arrow in
+the opposite direction to that of the one described after theorem
+\ref{thm:boolalgisboolrng}:
+\begin{center}
+	\begin{tikzcd}
+		\begin{Bmatrix}
+			\text{Boolean} \\
+			\text{rings}
+		\end{Bmatrix} \arrow[r] &
+			\begin{Bmatrix}
+				\text{Boolean} \\
+				\text{algebras}
+			\end{Bmatrix} \\
+		(A,+,\cdot,0,1)\arrow[r, maps to] &
+			(A,\boolsum,\boolprod,0,1,\conj{\cdot})
+	\end{tikzcd}
+\end{center}
+where the join is given by $x\boolsum y= x+y+x\cdot y$, the meet is defined
+by $x\boolprod y= x\cdot y$, and the complement of and element $x$ is
+$\conj{x}=1+x$. Since a Boolean ring morphism by definition preserves sum,
+product, zero and one, every such morphism must preserve join, meet, least
+element, greatest element and complements in the associated Boolean algebras.
+So, every morphism between Boolean rings \emph{is also} a morphism between
+the corresponding Boolean algebras. The relation between both arrows is
+clarified by the following lemma.
+
+\begin{lemmaSymmDiff}\label{thm:symmdiff}
+	If $(A,+,\cdot,0,1)$ is a Boolean ring and $A$ is endowed with
+	the Boolean algebra structure discribed in \ref{thm:boolrngisboolalg},
+	then the symmetric difference operation is given by:
+	\begin{align*}
+		(x\boolprod\conj{y})\boolsum(\conj{x}\boolprod y) & \,=\,
+			(x\cdot(1+y))\boolsum ((1+x)\cdot y) \\
+		& \,=\, x+y
+		\text{ .}
+	\end{align*}
+	%
+\end{lemmaSymmDiff}
+
+Thus the two arrows between Boolean algebras and Boolean rings are
+inverse of each other, and since every Boolean algebra morphism is a
+Boolean ring morphism and \textit{vice versa}, both categories are isomorphic.
+
+\begin{thmBoolAlgIsoBoolRng}\label{thm:boolalgisoboolrng}
+	The category of Boolean algebras is isomorphic to the category
+	of Boolean rings.
+\end{thmBoolAlgIsoBoolRng}
+
+Something that was not mentioned is the fact that $\conj{\conj{x}}=x$
+for every element $x$ in a Boolean algebra. This property is related to
+the concept of a Heyting algebra.
+
+\paragraph{Example}
+Let $\bb{N}$ be the set of natural numbers. On $\powset{\bb{N}}$, define
+the following binary relation: $A\sim B$ if
+$A\Delta B=(A\setmin B)\cup(B\setmin A)$ is finite. This is an equivalence
+relation. Let $[A]$ denote the class of an element $A\in\powset{\bb{N}}$
+and let $X$ denote the set of classes. In $X$ define the following order
+relation: $[A]\leq[B]$ if $A\setmin B$ is finite (or empty). This definition
+does not depend on the choice of representatives $A$ an $B$ for the classes.
+This says that a class $[B]$ is greater than another class $[A]$, if $B$
+contains every element of $A$, except perhaps a finite number of them
+(and that it is strictly greater, if $B$ exceeds $A$ by more than just a
+finite number of elements). The set $X$ together with the partial order
+$\leq$ is a Boolean algebra.
+
